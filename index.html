@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistan – Çalışma Asistanı</title>
+    <script>
+        // Açılışta tema titremesini önlemek için erken uygula
+        try {
+            const s = JSON.parse(localStorage.getItem('asistan_local_v1') || '{}');
+            const t = s.settings && s.settings.theme;
+            if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <aside id="sidebar"></aside>
+        <div id="scrim" data-action="toggle-sidebar"></div>
+        <main>
+            <header id="topbar">
+                <button class="btn icon" data-action="toggle-sidebar" aria-label="Menü">☰</button>
+                <strong>Asistan</strong>
+            </header>
+            <div id="view"></div>
+        </main>
+    </div>
+
+    <div id="session-root" class="session"></div>
+    <div id="modal-root"></div>
+    <div id="confirm-root"></div>
+    <div id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
